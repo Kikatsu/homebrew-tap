@@ -12,12 +12,13 @@ cask "pip-notch" do
     strategy :github_releases
   end
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "Pip/Pip.app"
 
   # Pip isn't notarized yet, so macOS would refuse to open it. Clear the download
   # quarantine so it opens normally; this is what the manual install asks for too.
+  # Install steps have no xattr action, so this stays a postflight block.
   postflight do
     system_command "/usr/bin/xattr",
                    args: ["-dr", "com.apple.quarantine", "#{appdir}/Pip.app"]
