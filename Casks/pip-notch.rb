@@ -1,6 +1,6 @@
 cask "pip-notch" do
-  version "0.1.2"
-  sha256 "49c5973aea5c07ae7fe1d0236cf2db72eaa65eea15bda690cd808a263c347d1c"
+  version "0.1.3"
+  sha256 "b4defdff1fc30edc0aedaa1d625c5733fdc500ef8c4da715e677114cdff99709"
 
   url "https://github.com/Kikatsu/pip-notch/releases/download/v#{version}/Pip-#{version}.zip"
   name "Pip"
