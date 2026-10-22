@@ -18,10 +18,11 @@ cask "pip-notch" do
 
   # Pip isn't notarized yet, so macOS would refuse to open it. Clear the download
   # quarantine so it opens normally; this is what the manual install asks for too.
-  # Install steps have no xattr action, so this stays a postflight block.
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/Pip.app"]
+  postflight_steps do
+    run "/usr/bin/xattr",
+        args:           ["-dr", "com.apple.quarantine", "{{appdir}}/Pip.app"],
+        writable_paths: ["Pip.app"],
+        writable_base:  :appdir
   end
 
   uninstall quit: "com.kikatsu.pip"
